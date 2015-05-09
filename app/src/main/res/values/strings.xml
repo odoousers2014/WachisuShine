@@ -13,4 +13,6 @@
     <string name="network_error_title">Network error</string>
     <string name="network_error_message">Oops! I can\'t find your network!</string>
     <string name="network_error_button_text">Ok</string>
+    <string name="time_label_now">It is now</string>
+    <string name="gradenLabel">degrees</string>
 </resources>

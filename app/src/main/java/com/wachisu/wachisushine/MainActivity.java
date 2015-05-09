@@ -11,18 +11,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -41,7 +37,8 @@ public class MainActivity extends ActionBarActivity {
     @InjectView(R.id.iconImageView)     ImageView mIconImageView;
     @InjectView(R.id.refreshImageView)  ImageView mRefreshImageView;
     @InjectView(R.id.progressBar)       ProgressBar mProgressBar;
-
+    @InjectView(R.id.localTimeTag)      TextView mLocalTime;
+    @InjectView(R.id.gradenLabel)       TextView mGradenLabel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +47,8 @@ public class MainActivity extends ActionBarActivity {
 
         mProgressBar.setVisibility(View.INVISIBLE);
 
-        final double latitude = 37.8267;
-        final double longitude = -122.423;
+        final double latitude = 51.924420;
+        final double longitude = 4.477733;
 
         mRefreshImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,11 +143,13 @@ public class MainActivity extends ActionBarActivity {
         Drawable drawable = getResources().getDrawable(mCurrentWeather.getIconId());
 
         mTemperatureLabel.setText(mCurrentWeather.getTemperature() + "");
-        mTimeLabel.setText("At " + mCurrentWeather.getFormattedTime() + " it will be");
+        mTimeLabel.setText(getString(R.string.time_label_now));
+        mLocalTime.setText(mCurrentWeather.getFormattedTime());
         mHumidityValue.setText(mCurrentWeather.getHumidity() + "");
         mPrecipValue.setText(mCurrentWeather.getPrecipChance() + "%");
         mSummaryLabel.setText(mCurrentWeather.getSummary());
         mIconImageView.setImageDrawable(drawable);
+        mGradenLabel.setText(getString(R.string.gradenLabel));
     }
 
     private CurrentWeatherData getCurrentDetails(String jsonData) throws JSONException {

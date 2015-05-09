@@ -59,9 +59,9 @@ public class CurrentWeatherData {
             iconId = R.drawable.fog;
         } else if (mIcon.equals("cloudy")) {
             iconId = R.drawable.cloudy;
-        } else if (mIcon.equals("partly_cloudy_day")) {
+        } else if (mIcon.equals("partly-cloudy-day")) {
             iconId = R.drawable.partly_cloudy;
-        } else if (mIcon.equals("partly_cloudy_night")) {
+        } else if (mIcon.equals("partly-cloudy-night")) {
             iconId = R.drawable.cloudy_night;
         }
 
@@ -69,7 +69,7 @@ public class CurrentWeatherData {
     }
 
     public String getFormattedTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
+        SimpleDateFormat formatter = new SimpleDateFormat("h:mm");
         formatter.setTimeZone(TimeZone.getTimeZone(getTimeZone()));
         Date dateTime = new Date(getTime() * 1000);
         String timeString = formatter.format(dateTime);
@@ -79,12 +79,14 @@ public class CurrentWeatherData {
 
     public int getTemperature() {
 
-        return (int) Math.round(mTemperature);
+       // return (int) Math.round(mTemperature);
+        return (int) Math.round(((mTemperature - 32) * 5 / 9));
     }
 
     public void setTemperature(double temperature) {
 
         mTemperature = temperature;
+
     }
 
     public double getHumidity() {
